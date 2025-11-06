@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 export default function BookDetails() {
-  const { id } = useParams();
-  const data = useSelector((state) => state.book.items);
+  const { id } = useParams(); //to get id from url
+  const data = useSelector((state) => state.book.items); //to use book items from redux store
   
-  const filtereddata = data.find((item) => item.id == id);
-
+  const filtereddata = data.find((item) => item.id == id); //find book from data
+//if book not found
   if (!filtereddata) {
     return <h2>Book not found</h2>;
   }

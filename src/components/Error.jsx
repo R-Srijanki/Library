@@ -1,9 +1,9 @@
 import { useRouteError, Link } from "react-router-dom";
 import { TbFaceIdError } from "react-icons/tb";
-
+//react icon
 export default function Error() {
-  const err = useRouteError();
-  console.error(err); // helpful for debugging
+  const err = useRouteError(); // for more details about error occurred
+ // console.error(err); // helpful for debugging
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center">

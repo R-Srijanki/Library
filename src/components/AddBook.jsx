@@ -4,10 +4,10 @@ import { addBook } from '../utils/slice';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddBook() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const books=useSelector((state)=>state.book.items);
- const [successMsg, setSuccessMsg] = useState("");
+  const dispatch = useDispatch();//to dispatch action
+  const navigate = useNavigate();//to navigate to different page
+  const books=useSelector((state)=>state.book.items);//to get items from redux store
+ const [successMsg, setSuccessMsg] = useState("");//when book uploaded successfully
   // Consolidate form inputs into a single state object
   const [formData, setFormData] = useState({
     id: Date.now(),
@@ -23,7 +23,7 @@ export default function AddBook() {
 
   // Consolidate error messages into a single state object
   const [formErrors, setFormErrors] = useState({});
-
+//to handle input change and update formData
   function handleChange(e) {
     const { id, value } = e.target;
     setFormData((prevData) => ({
@@ -31,11 +31,13 @@ export default function AddBook() {
       [id]: value,
     }));
   }
-
+//when book submit it checks error and navigates to browserbook page
   function handleclick(e) {
+     e.preventDefault(); //to prevent default submit
+    //to test for proper syntax
     const numcheck=/^[0-9]+$/;
     const chcheck=/^[a-zA-Z.\s]+$/
-    e.preventDefault();
+  //for error check and message for each field error
     const errors = {};
     let hasError = false;
 
@@ -52,6 +54,7 @@ export default function AddBook() {
       errors.title = 'Enter a valid book title';
       hasError = true;
     }
+    //if book exists then enter details again
     if(formData.title.trim().length>0){
        const titleMatch = books.filter((book) => {
             return book.title === formData.title;
@@ -60,23 +63,27 @@ export default function AddBook() {
            errors.title = 'Book already exists';
             hasError = true;
         }
-    }
+    }//author check
     if (!formData.author.trim() && !chcheck.test(formData.author.trim())) {
       errors.author = 'Enter a valid author name';
       hasError = true;
     }
+    //description length
     if (!formData.description.trim() && formData.description.trim().length>20 && formData.description.trim().length<300) {
       errors.description = 'Enter a proper book description';
       hasError = true;
     }
+    //image
     if (!formData.imageUrl.trim()) {
       errors.imageUrl = 'Enter a valid book image URL';
       hasError = true;
     }
+    //category
     if (!formData.category.trim()) {
       errors.category = 'Enter a correct category';
       hasError = true;
     }
+    //rating of book
     const rate = parseFloat(formData.rating);
     if (isNaN(rate) || rate < 0 || rate > 5) {
       errors.rating = 'Enter a rating between 0 and 5';
@@ -104,6 +111,7 @@ export default function AddBook() {
     };
 
     dispatch(addBook(obj));
+    //success message after it is added
     setSuccessMsg("✅ New Gem Added successfully! Redirecting...");
    
   }
@@ -129,7 +137,7 @@ export default function AddBook() {
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-xl">
         <h1 className="pb-6 text-center text-3xl font-bold text-gray-800 font-serif">Add a New Gem</h1>
         <form className="space-y-6" onSubmit={handleclick}>
-         
+         {/*to collect details about book and display error message if it exists*/}
           <div>
             <label htmlFor="title" className="mb-1 block text-sm font-medium text-gray-700">Title</label>
             <input
@@ -234,7 +242,7 @@ export default function AddBook() {
             />
             {formErrors.category && <p className="mt-1 text-sm text-red-500">{formErrors.category}</p>}
           </div>
-
+          {/*submit on adding all details properly */}
           <button
             type="submit"
             className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

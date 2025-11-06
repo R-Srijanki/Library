@@ -4,8 +4,9 @@ import books from "./mockdata";
 const slice=createSlice({
     name:"book",
     initialState:{
-        items: books,
+        items: books,//from mockdata
     },
+    //when to add book to items
     reducers:{
         addBook:(state,action)=>{
             state.items.unshift(action.payload);
@@ -13,5 +14,5 @@ const slice=createSlice({
     }
 });
 
-export default slice.reducer;
-export const {addBook} = slice.actions;
+export default slice.reducer; //reducer
+export const {addBook} = slice.actions; //actions

@@ -8,7 +8,7 @@ import BrowseBooks from './components/BrowseBooks.jsx'
 import Error from './components/Error.jsx'
 import AddBook from './components/AddBook.jsx'
 import Home from './components/Home.jsx'
-
+//routing paths
 const appRouter=createBrowserRouter([
   {
     path:"/",

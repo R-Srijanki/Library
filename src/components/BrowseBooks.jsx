@@ -4,10 +4,10 @@ import { Link, useParams } from "react-router-dom";
 import Book from "./Book";
 
 export default function BrowseBooks() {
-  const params = useParams();
-  const allBooks = useSelector((state) => state.book.items);
-  const [bookdet, setdet] = useState("");
-  const [filteredBooks, setFilteredBooks] = useState(allBooks);
+  const params = useParams(); //to get category from url
+  const allBooks = useSelector((state) => state.book.items); //get books from redux store
+  const [bookdet, setdet] = useState(""); //for search details
+  const [filteredBooks, setFilteredBooks] = useState(allBooks); //filter books based on choice
 
   // ✅ Search handler
   function handleSearch() {
@@ -15,7 +15,7 @@ export default function BrowseBooks() {
       setFilteredBooks(allBooks);
       return;
     }
-
+//depending on author or title search
     const searchResult = allBooks.filter(
       (item) =>
         item.author.toLowerCase().includes(bookdet.toLowerCase()) ||
@@ -38,6 +38,7 @@ export default function BrowseBooks() {
     return (
       <div className="bg-gradient-to-r from-blue-300 to-green-300 min-h-screen overflow-y-auto">
         <div className="flex justify-center items-center py-4 bg-gray-100 shadow-sm ">
+          {/*input search */}
           <input
             type="text"
             placeholder="Search by title or author"
@@ -81,6 +82,7 @@ export default function BrowseBooks() {
   return (
     <div className="bg-gradient-to-r from-blue-300 to-green-300 min-h-screen overflow-y-auto">
       <div className="flex justify-center items-center py-4 bg-gray-100 shadow-sm ">
+          {/*input search */}
         <input
           type="text"
           placeholder="Search by title or author"
@@ -92,7 +94,7 @@ export default function BrowseBooks() {
           <i className="fa-solid fa-magnifying-glass text-lg"></i>
         </button>
       </div>
-
+{/*display books from stored categoryGroups */}
       {Object.keys(categoryGroups).length > 0 ? (
         Object.keys(categoryGroups).map((cat) => (
           <div key={cat} className="my-10">

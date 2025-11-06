@@ -3,8 +3,8 @@ import Book from "./Book";
 import { Link } from "react-router-dom";
 
 export default function Home(){
-    const books=useSelector((state)=>state.book.items);
-    const topBooks=[...books].sort((a,b)=>b.irating-a.irating).slice(0,6);
+    const books=useSelector((state)=>state.book.items);//to access book items in store
+    const topBooks=[...books].sort((a,b)=>b.irating-a.irating).slice(0,6);//top rated books
     return(
   <div className="w-screen h-screen bg-gradient-to-r from-blue-500 to-green-500 overflow-y-auto">
     {/* Header Section */}
@@ -53,6 +53,7 @@ export default function Home(){
         </h1>
 
         <div className="flex flex-wrap justify-center gap-6">
+          {/*to display top rated books on click we access detailed info about book */}
           {topBooks.map((item) => (
             <Link
               key={item.id}

@@ -42,7 +42,7 @@ export default function Header(){
 
     {/* 📋 Dropdown for Mobile */}
     <div
-      className={`md:hidden absolute top-full right-4 mt-3 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-300 ease-in-out ${
+      className={`md:hidden absolute top-full right-4 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-300 ease-in-out ${
         click ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
       }`}
     >
