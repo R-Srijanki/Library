@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
-import Book from "../../../components/Book";
-import './style.css'
+import Book from "./Book";
 import { Link } from "react-router-dom";
 
 export default function Home(){

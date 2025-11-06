@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Book from "./Book";
-import './style.css'
 
 export default function BrowseBooks() {
   const params = useParams();

@@ -1,4 +1,3 @@
-import './style.css'
 export default function Book({book}){
     return(
         <div className="w-50 sm:w-58 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">

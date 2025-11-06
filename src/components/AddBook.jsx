@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBook } from '../../../utils/slice';
+import { addBook } from '../utils/slice';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddBook() {
@@ -28,7 +28,7 @@ export default function AddBook() {
     const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [id]: value.trim(),
+      [id]: value,
     }));
   }
 
@@ -40,19 +40,19 @@ export default function AddBook() {
     let hasError = false;
 
     // Validation logic for each field
-    if (!formData.year && !numcheck.test(formData.year) && formData.year.length!=4) {
+    if (!formData.year.trim() && !numcheck.test(formData.year.trim()) && formData.year.trim().length!=4) {
       errors.year = 'Enter a valid year';
       hasError = true;
     }
-    if (!formData.pages && !numcheck.test(formData.pages)) {
+    if (!formData.pages.trim() && !numcheck.test(formData.pages.trim())) {
       errors.pages = 'Enter a valid no. of pages';
       hasError = true;
     }
-    if (!formData.title) {
+    if (!formData.title.trim()) {
       errors.title = 'Enter a valid book title';
       hasError = true;
     }
-    if(formData.title.length>0){
+    if(formData.title.trim().length>0){
        const titleMatch = books.filter((book) => {
             return book.title === formData.title;
         });
@@ -61,19 +61,19 @@ export default function AddBook() {
             hasError = true;
         }
     }
-    if (!formData.author && !chcheck.test(formData.author)) {
+    if (!formData.author.trim() && !chcheck.test(formData.author.trim())) {
       errors.author = 'Enter a valid author name';
       hasError = true;
     }
-    if (!formData.description && formData.description.length>20 && formData.description.length<300) {
+    if (!formData.description.trim() && formData.description.trim().length>20 && formData.description.trim().length<300) {
       errors.description = 'Enter a proper book description';
       hasError = true;
     }
-    if (!formData.imageUrl) {
+    if (!formData.imageUrl.trim()) {
       errors.imageUrl = 'Enter a valid book image URL';
       hasError = true;
     }
-    if (!formData.category) {
+    if (!formData.category.trim()) {
       errors.category = 'Enter a correct category';
       hasError = true;
     }
