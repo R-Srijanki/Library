@@ -42,11 +42,11 @@ export default function AddBook() {
     let hasError = false;
 
     // Validation logic for each field
-    if (!formData.year.trim() && !numcheck.test(formData.year.trim()) && formData.year.trim().length!=4) {
+    if (!formData.year.trim() || !numcheck.test(formData.year.trim()) || formData.year.trim().length!=4) {
       errors.year = 'Enter a valid year';
       hasError = true;
     }
-    if (!formData.pages.trim() && !numcheck.test(formData.pages.trim())) {
+    if (!formData.pages.trim() || !numcheck.test(formData.pages.trim())) {
       errors.pages = 'Enter a valid no. of pages';
       hasError = true;
     }
@@ -64,12 +64,12 @@ export default function AddBook() {
             hasError = true;
         }
     }//author check
-    if (!formData.author.trim() && !chcheck.test(formData.author.trim())) {
+    if (!formData.author.trim() || !chcheck.test(formData.author.trim())) {
       errors.author = 'Enter a valid author name';
       hasError = true;
     }
     //description length
-    if (!formData.description.trim() && formData.description.trim().length>20 && formData.description.trim().length<300) {
+    if (!formData.description.trim() || formData.description.trim().length<20 || formData.description.trim().length>300) {
       errors.description = 'Enter a proper book description';
       hasError = true;
     }
