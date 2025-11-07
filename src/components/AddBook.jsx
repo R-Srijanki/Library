@@ -181,6 +181,7 @@ export default function AddBook() {
             <label htmlFor="description" className="mb-1 block text-sm font-medium text-gray-700">Description</label>
             <textarea
               id="description"
+              rows="5"
               onChange={handleChange}
               placeholder="Summary of Book"
               value={formData.description}
